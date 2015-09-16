@@ -242,17 +242,17 @@ class puppet::master (
     }
     default: { fail("Unknown value for environments ${environments}") }
   }
-
-  ini_setting {'puppetmastermodulepath':
-    ensure  => $setting_config,
-    setting => 'modulepath',
-    value   => $modulepath,
-  }
-  ini_setting {'puppetmastermanifest':
-    ensure  => $setting_config,
-    setting => 'manifest',
-    value   => $manifest,
-  }
+# DEPRECATED SETTINGS - REMOVING
+#  ini_setting {'puppetmastermodulepath':
+#    ensure  => $setting_config,
+#    setting => 'modulepath',
+#    value   => $modulepath,
+#  }
+#  ini_setting {'puppetmastermanifest':
+#    ensure  => $setting_config,
+#    setting => 'manifest',
+#    value   => $manifest,
+#  }
   ini_setting {'puppetmasterenvironmentpath':
     ensure  => $setting_directory,
     setting => 'environmentpath',
