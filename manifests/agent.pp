@@ -18,6 +18,7 @@
 #   ['classfile']             - The file in which puppet agent stores a list of the classes 
 #                               associated with the retrieved configuration. 
 #   ['logdir']                - The directory in which to store log files
+#   ['ssldir']                - The directory in which to store the ssl files for the agent
 #   ['environment']           - The environment of the puppet agent
 #   ['report']                - Whether to return reports
 #   ['pluginsync']            - Whethere to have pluginsync
@@ -66,7 +67,7 @@ class puppet::agent(
   $syslogfacility         = undef,
   $priority               = undef,
   $logdir                 = undef,
-
+  $ssldir                 = undef,
   #[agent]
   $srv_domain             = undef,
   $ordering               = undef,
@@ -406,6 +407,14 @@ class puppet::agent(
       setting => 'logdir',
       value   => $logdir,
       section => 'main',
+    }
+  }
+  if $ssldir != undef {
+    ini_setting {'puppetagentssldir':
+      ensure  => present,
+      setting => 'ssldir',
+      value   => $ssldir,
+      section => 'agent',
     }
   }
   if $http_proxy_host != undef {
