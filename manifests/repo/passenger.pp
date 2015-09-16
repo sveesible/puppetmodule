@@ -11,6 +11,7 @@ class puppet::repo::passenger{
     }
  } elsif $::osfamily == 'Redhat' {
      yumrepo {'passenger':
+       name    => 'passenger',
        baseurl =>'https://oss-binaries.phusionpassenger.com/yum/passenger/el/$releasever/$basearch',
        gpgcheck => 0,
        enabled => 1,
