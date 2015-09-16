@@ -132,6 +132,7 @@ class puppet::passenger(
     port                 => $puppet_passenger_port,
     priority             => '40',
     docroot              => $puppet_docroot,
+    passenger_pre_start  => "https://${certname}:${puppet_passenger_port}",
     serveradmin          => $apache_serveradmin,
     servername           => $certname,
     ssl                  => true,
@@ -145,8 +146,10 @@ class puppet::passenger(
     ssl_honorcipherorder => 'On',
     ssl_verify_client    => 'optional',
     ssl_verify_depth     => '1',
+    ssl_crl_check        => 'chain',
     ssl_options          => ['+StdEnvVars', '+ExportCertData'],
     rack_base_uris       => '/',
+    request_headers      => ['set X-SSL-Subject %{SSL_CLIENT_S_DN}e','set X-Client-DN %{SSL_CLIENT_S_DN}e','set X-Client-Verify %{SSL_CLIENT_VERIFY}e'],
     directories          => [
       {
         path => $puppet_docroot,
