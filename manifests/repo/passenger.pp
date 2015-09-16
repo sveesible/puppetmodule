@@ -18,6 +18,7 @@ class puppet::repo::passenger{
        sslverify=> 1,
        sslcacert=>'/etc/pki/tls/certs/ca-bundle.crt'
      }
+  }
   else {
     fail("Unsupported osfamily ${::osfamily}")
   }
