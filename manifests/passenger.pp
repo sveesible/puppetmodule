@@ -63,6 +63,8 @@ class puppet::passenger(
   apache::mod { 'status': package_ensure => 'absent' }
 
   include puppet::params
+  class {'puppet::repo::passenger':}
+  ->
   class { 'apache::mod::passenger':
     passenger_max_pool_size      => $passenger_max_pool_size,
     passenger_high_performance   => $passenger_high_performance,
