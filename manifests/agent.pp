@@ -67,8 +67,9 @@ class puppet::agent(
   $syslogfacility         = undef,
   $priority               = undef,
   $logdir                 = undef,
-  $ssldir                 = undef,
+ 
   #[agent]
+  $ssldir                 = undef,
   $srv_domain             = undef,
   $ordering               = undef,
   $trusted_node_data      = undef,
@@ -391,6 +392,7 @@ class puppet::agent(
       ensure  => present,
       setting => 'certname',
       value   => $certname,
+      section => 'agent'
     }
   }
   if $priority != undef {
